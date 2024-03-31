@@ -187,8 +187,8 @@ class MenuApp:
 
 
     def _help_index(self):
-        webbrowser.open_new_tab('https://azapy.readthedocs.io/en/latest/')
+        webbrowser.open_new_tab(configHelps._index_help)
 
 
     def _help_quick_start(self):
-        webbrowser.open_new_tab('https://azapy.readthedocs.io/en/latest/')
+        webbrowser.open_new_tab(configHelps._Quick_Start_help)
