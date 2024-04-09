@@ -5,9 +5,10 @@ Package installation: *pip install azapyGUI*
 
 ## Start ##
 
-To start the application you need to write the following 2-line python script (let's call it `my_azapy.py`)
+To start the application you need to write the following 2-line python script. 
+For the purpose of this example, let's call it `my_azapy.py`.
 
-```
+```python
 import azapyGUI
 azapyGUI.start()
 ```
@@ -34,7 +35,7 @@ In the first tab, called `Directories`, you must make three choices.
 When saving/loading a project, you will be prompt to this 
 directory (you can always change it). 
 2. `Market Data Directory` - local (buffer) market data directory. Once the historical data is retrieved form 
-the provider, a copy is stored in this directory. Successive calls for the same market data will read data first from 
+the provider, a copy is stored in this directory. Successive calls for the same market data will try first to access data from
 this directory and then, and only if there is a need to update the data, from the provider. This will speed up considerable 
 the computations (in general accessing repeatedly the same provider data over the internet may add up to a 
 considerable amount of time). The market data stored in this directory is not intended to be consumed by other 
@@ -63,7 +64,7 @@ A `Portfolio Edit` window will popup.
 Here we will enter the portfolio information: name, components, and optimization model.
 1. Name - on the entry space, right of label `Edit Portfolio`, replace the suggestion `MyPort` with 
     the name you want for this portfolio (try to chose something short and meaningful for you). For
-    our example let us type `Port-1`. I know, it is not very inspiring or meaningful, but it will
+    our example let us type `Port-MAD`. I know, it is not very inspiring or meaningful, but it will
     help us to navigate this example. 
 2. Portfolio Components - on the left panel enter the symbols of the portfolio components. 
     For our example let's type SPY, ONEQ, IWM, XLK, and XLF. You have to enter one symbol name per cell. 
@@ -90,7 +91,7 @@ Here we will enter the portfolio information: name, components, and optimization
     (although the length of the historical data is only 1 day - hardly enough for any computation). 
 3. Optimization Model - although there are many and some of them very complex choices, for this 
     example we will make a simple choices. On the third drop-down list under the label `Optimization Model:` 
-    click on `mMAD` (mixture Mean Absolute Deviation). An mMAD model parameter window will popup.
+    click on `mMAD` (mixture Mean Absolute Deviation). An mMAD edit model parameter window will popup.
 
 ![alt text](panels/mMAD_model_panel.png)
 
@@ -120,14 +121,14 @@ The `Backtesting` window will popup.
 
 We will accept the default values. Later we will discuss in detail all available options. 
 However, it is worth mentioning a few features now. The name of our portfolio is at the top
-of the screen. In general, `azapyGUI` allows for multiple portfolio backtesting (for performance 
-comparisons). In this case the the list of portfolio names will be visible at the top of
+of the screen. In general, `azapyGUI` allows for simultaneous multiple portfolio backtesting. 
+In this case the the list of portfolio names will be visible at the top of
 the window. End date is set to `today` (*i.e.*, most recent market closing date) and the 
 start date is set to `1/1/2012` (*i.e.*, the first market closing date after, and including, 
 `1/1/2012`). The rebalancing date is set 3 business days before (this is the meaning of 
 `-3` value for `Bday offset` field) the end of the calendaristic quarter (the quarterly reset 
 was defined by the model parameter, *i.e.*, `Q` choice for `freq` value). The fixing date
-(*i.e.*, the closing day relative to witch the portfolio weights are computed) is define 
+(*i.e.*, the closing day relative to witch the portfolio weights are computed) is defined 
 as the closing day before the rebalancing day (*i.e.*, the `-1` value for `Fixing offset` field).
 A check of `Nr Shares int` box, stands for using whole numbers (opposed to fractional)
 of shares (therefore the portfolio will be subject to rebalancing round off errors - in practice they
@@ -164,7 +165,7 @@ Another important `azapyGUI` functionality is the computation of weights and the
 to rebalance an exiting portfolio. 
 
 Let's imagine that we are after today closing and tomorrow we would like to initiate a position in
-`Port-1`. We will need to compute the weights and the number of shares that we need to buy. 
+`Port-MAD`. We will need to compute the weights and the number of shares that we need to buy. 
 To initiate this computations, let's go back to the main panel, right click the mouse on the portfolio 
 name, and select `Rebalance` item. The `Rebalance` window will popup.
 
@@ -176,14 +177,20 @@ You can change this value to an actual amount of dollars you want to allocate to
 Then, if you press the `Weights` button, `azapyGUI` will return a report showing the value of the weights 
 for each portfolio component. This is a useful information to understand the capital allocation. 
 Further, if we press on the `Treading Sheet` button, the transactions report will popup. 
-Here are listed the initial, final, and delta (final-initial) positions for all assets with non zero allocation. 
+Here are listed the initial, final, and delta (final-initial) positions for all assets with non zero allocations. 
 This report can be saved and used next day (rebalancing day) to assist the execute of the 
 actual transactions.
 
-The similar computation for an existing portfolio requires to enter the initial number of 
-shares for each portfolio component and a non zero value for cash only if we add capital to this 
-strategy (a positive amount) or reduce the capital (a negative value). Then, the `Treading Sheet` will
+The similar computation for an existing portfolio requires to enter the initial (existing) number of 
+shares for each portfolio component and a non-zero value for `Cash` only if we want to increase the 
+capital (a positive amount) or reduce the capital (a negative value) for this strategy. Then, the `Treading Sheet` will
 show the right amount of shares (delta position) that will rebalance the portfolio. 
 
 ## Backtesting Multiple Portfolios ##
+
+
+
+## Example of a complex portfolio ##
+
+
 

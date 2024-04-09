@@ -280,7 +280,7 @@ def _validate_dirichlet_alpha(param, ns):
 
 def _validate_variance_reduction(param):
     field = 'variance_reduction'
-    param[field] = int(param[field])
+    param[field] = True if param[field] == 'True' else False
     return True, param[field]
     
 

@@ -433,8 +433,8 @@ greedy_models = {'Kelly': {'param': {'freq': __freq_val,
                                                              'validate': mpv._validate_nothing,
                                                              'tip': configTips._dirichlet_alpha_param_tip,
                                                              },
-                                         'variance_reduction': {'default': '1',
-                                                                'values': ['0', '1'],
+                                         'variance_reduction': {'default': 'True',
+                                                                'values': ['True', 'False'],
                                                                 'visible': True,
                                                                 'validate': mpv._validate_variance_reduction,
                                                                 'tip': configTips._variance_reduction_param_tip,
@@ -465,7 +465,7 @@ greedy_models = {'Kelly': {'param': {'freq': __freq_val,
                                'validate': [{'dirichlet_alpha': mpv._validate_dirichlet_alpha}],
                                'tip': configTips._Universal_model_tip,
                                'help': configHelps._Universal_model_help,
-                               'azapy': ['UniversalEngine', 'Port_Universal']
+                               'azapy': ['azHelper.UniversalEngineWrap', 'Port_Universal']
                                },
                  }
 

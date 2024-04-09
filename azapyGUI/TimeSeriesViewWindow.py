@@ -187,9 +187,6 @@ class TimeSeriesViewWindow(tk.Toplevel):
                 if (dd.index[-1] != sds) or (dd.index[0] != ede): 
                     self._isEqualLines = False
                     return
-            
-  
-        print(f"ML {self._isMultiLines} MC {self._isMultiColumns} EQ {self._isEqualLines}", flush=True)
 
 
     def _prep_fig(self):
