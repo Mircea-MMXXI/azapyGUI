@@ -28,3 +28,7 @@ class MktDataNode:
         if self._summary is None: self._summary = az.summary_MkTdata(self.mktdata)
         return (self._summary.na_total[0] + self._summary.cont[0]) > 0
     
+    
+    def get_mktdata(self, edate=None):
+        return self.mktdata if edate is None else self.mktdata[self.mktdata.index <= edate]
+    

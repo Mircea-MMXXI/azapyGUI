@@ -1,6 +1,6 @@
 # azapyGUI project
 
-## Graphical User Interface for azapy library - Financial Portfolio Optimization Algorithms
+## Graphical User Interface for [azapy](https://pypi.org/project/azapy/) library - Financial Portfolio Optimization Algorithms
 
 ### An open-source python library for everybody
 
@@ -9,9 +9,17 @@ Author: Mircea Marinescu
 
 email: Mircea.Marinescu@outlook.com
 
-[Package documentation](https://azapy.readthedocs.io/en/latest)
+[Package documentation](https://azapyGUI.readthedocs.io/en/latest)
 
 Package installation: `pip install azapyGUI`
+
+To start the application create the following 2 line script - let's call it `my_azapy.py`
+```python:
+import azapyGUI
+azapyGUI.start()
+```
+and then run in a powershell: `python my_azapy.py`
+
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D07G22H)
 
@@ -28,8 +36,7 @@ Package installation: `pip install azapyGUI`
   7. GINI - Gini index (as in Corrado Gini statistician 1884-1965)
   8. SD - standard deviation
   9. MV - variance (as in mean-variance model)
-  10. mEVaR - mixture EVaR (Entropic Value at Risk)
-  <span style="color:red">(alpha version)</span>
+  10. mEVaR - mixture EVaR (Entropic Value at Risk) <span style="color:blue">(beta version)</span>
 
 #### For each class of portfolio the following optimization strategies are available
 
@@ -73,8 +80,8 @@ Package installation: `pip install azapyGUI`
 
 ### D. Market Selectors
 
-  1. Dual Momentum Selector <span style="color:red">(alpha version)</span>
-  2. Correlation Clustering Selector <span style="color:red">(alpha version)</span>
+  1. Dual Momentum Selector <span style="color:blue">(beta version)</span>
+  2. Correlation Clustering Selector <span style="color:blue">(beta version)</span>
 
 ### Automated market data collection
 
@@ -88,9 +95,9 @@ Package installation: `pip install azapyGUI`
 ### Required packages  
 
 * python 3.11.8
-* azapy 1.2.3
-* pandas 2.1.4
-* numpy 1.26.2
+* azapy 1.2.4
+* pandas 2.2.0
+* numpy 1.26.0
 * matplotlib 3.8.0
 * xlsxwriter 3.1.1
 

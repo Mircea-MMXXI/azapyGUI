@@ -16,6 +16,7 @@ from azapyGUI.modelParametersValidation import _validDateMMDDYYYY, _validFloat
 from azapyGUI.GetMktData import GetMktData
 from azapyGUI.mktDataValidation import mkt_today
 from azapyGUI.DF_Window import DF_Window
+import azapyGUI.azHelper as azHelper
 
 
 class WeightsWindow():
@@ -188,7 +189,7 @@ class WeightsWindow():
         for mo in model.optimizer.values():
             if 'hlength' in mo['param'].keys():
                 hlength = max(hlength, mo['param']['hlength'])       
-        sdate = edate - pd.DateOffset(days=np.ceil(hlength * 365.25) + 10)
+        sdate = self._edate - pd.DateOffset(days=np.ceil(hlength * 365.25) + 10)
         self._sdate = config._bday.rollback(sdate).normalize().tz_localize(None)
         
         # provider, force
@@ -196,11 +197,11 @@ class WeightsWindow():
         self._force = self._ent_force.get()
         
         if self._old_param is not None:
-            if [self._sdate, self._provider, self._force] == self._old_param:
+            if [self._edate, self._provider, self._force] == self._old_param:
                 return False
         if (self._dfw is not None) and self._dfw.winfo_exists():
             self._dfw.destroy()
-        self._old_param = [self._sdate, self._provider, self._force]
+        self._old_param = [self._edate, self._provider, self._force]
         return True
             
 
@@ -219,8 +220,8 @@ class WeightsWindow():
     
     def _computeWeights(self):
         portdata = config.PortDataDict[self._pname]
-        mktdata = {symb: config.MktDataDict[symb].mktdata.copy() for symb in portdata.symbols}
-        
+        mktdata = {symb: config.MktDataDict[symb].get_mktdata(self._edate).copy() for symb in portdata.symbols}
+
         optname = list(portdata.optimizer.keys())[0]
         if configModels.get_comptype(optname) == 'standalone':
             fmname = configModels.get_model_family(optname)
@@ -228,12 +229,11 @@ class WeightsWindow():
             eff_param = deepcopy(portdata.optimizer[optname]['param'])
             eff_param['sdate'] = self._sdate
             eff_param['edate'] = self._edate
-            self._pipe = getattr(az, mname)(**portdata.optimizer[optname]['param'])
+            exec(f"self._pipe = {mname}(**eff_param)")
         else:
             model = []
-            
             sel_list = [None] * len(portdata.selectors.keys())
-            for name, vv in portdata.selectors.items():
+            for vv in portdata.selectors.values():
                 sel_list[vv['index']] = vv
             for vv in sel_list:
                 mname = configModels.selector_models[vv['name']]['azapy']
@@ -241,7 +241,7 @@ class WeightsWindow():
                 moo = oo(**vv['param'])
                 model.append(moo)
                 
-            for mopt, vv in portdata.optimizer.items():
+            for vv in portdata.optimizer.values():
                 fmname = configModels.get_model_family(vv['name'])
                 mname = configModels.portfolio_model_family[fmname][vv['name']]['azapy']
                 if mname == 'EWPEngine':
@@ -252,13 +252,13 @@ class WeightsWindow():
                     model.append(moo)
             
             self._pipe = az.ModelPipeline(model)
-            self._weights = self._pipe.getWeights(mktdata, verbose=False)
 
-            if self._pipe.status == 0: return True
-        
-            msg = ('Numerical errors in weights computation. Abort!')
-            tk.messagebox.showwarning("Warning", message=msg, parent=self._window)
-            return False
+        self._weights = self._pipe.getWeights(mktdata, verbose=False)
+        if self._pipe.status == 0: return True
+    
+        msg = 'Numerical errors in weights computation. Abort!'
+        tk.messagebox.showwarning("Warning", message=msg, parent=self._window)
+        return False
 
 
     def _btn_refresh_func(self):
@@ -271,7 +271,7 @@ class WeightsWindow():
                 return
             if not self._computeWeights():
                 return
-        
+
         df = (pd.DataFrame(self._weights) * 100).round(2)
         df.columns = ['weight']
         df.index.name = 'symbol'

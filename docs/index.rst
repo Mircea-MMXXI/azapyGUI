@@ -7,7 +7,7 @@
 Welcome to **azapyGUI** project
 ===============================
 
-Graphical Interface for **azapy** library - Financial Portfolio Optimization Algorithms
+Graphical Interface for `azapy <https://azapy.readthedocs.io/en/latest/>`_ library - Financial Portfolio Optimization Algorithms
 
 An open source python library for everyone
 

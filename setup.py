@@ -27,7 +27,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     python_requires=">=3.11",
     install_requires=[
-          'azapy',
+          'azapy>=1.2.4',
           'numpy',
           'pandas',
           'matplotlib',

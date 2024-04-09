@@ -91,7 +91,7 @@ class BacktestComputation:
         
     def _computePort_standalone(self, pname):
         portdata = config.PortDataDict[pname]
-        mktdata = {symb: config.MktDataDict[symb].mktdata.copy() for symb in portdata.symbols}
+        mktdata = {symb: config.MktDataDict[symb].get_mktdata().copy() for symb in portdata.symbols}
         
         optname = list(config.PortDataDict[pname].optimizer.keys())[0]
         fmname = configModels.get_model_family(optname)
