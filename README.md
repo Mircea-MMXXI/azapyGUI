@@ -1,6 +1,6 @@
 # azapyGUI project
 
-## Graphical User Interface for azapy library - Financial Portfolio Optimization Algorithms
+## Graphical User Interface for [azapy](https://pypi.org/project/azapy/) library - Financial Portfolio Optimization Algorithms
 
 ### An open-source python library for everybody
 
@@ -76,7 +76,7 @@ and then run in a powershell: `python my_azapy.py`
 
   1. Kelly's portfolio (as in John Larry Kelly Jr. scientist 1923-1965) -
      maximization of portfolio log returns
-  2. Universal portfolio (Thomas M. Cover 1996) <span style="color:blue">(beta version)</span>
+  2. Universal portfolio (Thomas M. Cover 1996) <span style="color:red">(alpha version)</span>
 
 ### D. Market Selectors
 
@@ -96,8 +96,8 @@ and then run in a powershell: `python my_azapy.py`
 
 * python 3.11.8
 * azapy 1.2.4
-* pandas 2.1.4
-* numpy 1.26.2
+* pandas 2.2.0
+* numpy 1.26.0
 * matplotlib 3.8.0
 * xlsxwriter 3.1.1
 

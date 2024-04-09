@@ -386,54 +386,55 @@ def _validDateMMDDYYYY(inp, acttype, val):
     if acttype != '1': return True
     match len(val):
         case 1: 
-            return inp in list('0123456789tn')
+            return inp in '0123456789tn'
         case 2:
             match val[0]:
-                case '0': return inp in list('123456789')
-                case '1': return inp in list('012/.-')
+                case '0': return inp in '123456789'
+                case '1': return inp in '012/.-'
                 case 't': return inp == 'o'
                 case 'n': return inp == 'o'
                 case _: return inp in '/.-'
         case 3:
-            return ((val[1].isdigit() and (inp in list('/.-'))) or 
+            return ((val[1].isdigit() and (inp in '/.-')) or 
                     ((val[0] == 't') and (inp == 'd')) or
                     ((val[0] == 'n') and(inp == 'w')) or
-                    ((not val[1].isdigit()) and (inp.isdigit())))        
+                    ((not val[1].isdigit()) and inp.isdigit()))        
         case 4:
-            return (((val[2] in list('/.-')) and inp.isdigit()) or
-                    ((val[2] == '0') and (inp in list('123456789'))) or
-                    ((val[2] in list('12')) and (inp in list('0123456789/.-'))) or
+            return (((val[2] in '/.-') and inp.isdigit()) or
+                    ((val[2] == '0') and (inp in '123456789')) or
+                    ((val[2] in '12') and (inp in '0123456789/.-')) or
                     ((val[2] == '3') and (inp == '0') and (val[0] != '2')) or
-                    ((val[2] == '3') and (inp == '1') and (val[0] in list('13578'))) or
-                    ((val[2] in list('3456789')) and (inp in list('/.-'))) or
+                    ((val[2] == '3') and (inp == '1') and (val[0] in '13578')) or
+                    ((val[2] in '3456789') and (inp in '/.-')) or
                     ((val[2] == 'd') and (inp == 'a')))
         case 5:
-            return (((val[3] == '0') and (inp in list('123456789'))) or
-                    ((val[3] in list('12')) and (inp in list('0123456789/.-'))) or
+            return (((val[3] == '0') and (inp in '123456789')) or
+                    ((val[3] == '0') and (val[1] in '/.-') and (inp in '/.-')) or
+                    ((val[3] in '12') and (inp in '0123456789/.-')) or
                     ((val[3] == '3') and (inp == '0') and (int(val[:2]) != 2)) or
                     ((val[3] == '3') and (inp == '1') and (int(val[:2]) in [1, 3, 5, 7, 8, 10, 12])) or
-                    ((val[3] in list('3456789')) and (inp in list('/.-'))) or
-                    ((val[3] in list('/.-')) and (inp == '2')) or
+                    ((val[3] in '3456789') and (inp in '/.-')) or
+                    ((val[3] in '/.-') and (inp == '2')) or
                     ((val[3] == 'a') and (inp == 'y')))
         case 6:
-            return ((val[4].isdigit() and (inp in list('/.-'))) or
-                    ((val[4] in list('/.-')) and (inp == '2')) or
+            return ((val[4].isdigit() and (inp in '/.-')) or
+                    ((val[4] in '/.-') and (inp == '2')) or
                     ((val[4] == '2') and (inp == '0')))
         case 7:
-            return (((val[5] in list('/.-')) and (inp == '2')) or
+            return (((val[5] in '/.-') and (inp == '2')) or
                     ((val[5] == '2') and (inp == '0')) or
                     ((val[5] == '0') and inp.isdigit()))
         case 8:
-            return (((val[5] in list('/.-')) and (inp == '0')) or
-                    ((val[4] in list('/._')) and inp.isdigit()) or
-                    ((val[3] in list('/._')) and inp.isdigit()))
+            return (((val[5] in '/.-') and (inp == '0')) or
+                    ((val[4] in '/._') and inp.isdigit()) or
+                    ((val[3] in '/._') and inp.isdigit()))
         case 9:
-            return (((val[5] in list('/.-')) and inp.isdigit()) or
-                    ((val[4] in list('/.-')) and inp.isdigit()) and
-                     (((inp != '0') and (int(val[7:]) % 4 == 0)) or (val[0] != '2') or (int(val[2:4]) != 29)))
+            return (((val[5] in '/.-') and inp.isdigit()) or
+                    ((val[4] in '/.-') and inp.isdigit()) and
+                     (((val[7:] != '00') and (int(val[7:]) % 4 == 0)) or (val[0] != '2') or (int(val[2:4]) != 29)))
         case 10:
-            return ((val[5] in list('/.-')) and inp.isdigit() and 
-                    (((inp != '0') and (int(val[8:]) % 4 == 0)) or (int(val[:2]) != 2) or (int(val[3:5]) != 29)))
+            return ((val[5] in '/.-') and inp.isdigit() and 
+                    (((val[8:] != '00') and (int(val[8:]) % 4 == 0)) or (int(val[:2]) != 2) or (int(val[3:5]) != 29)))
         case _: return False
                     
    
