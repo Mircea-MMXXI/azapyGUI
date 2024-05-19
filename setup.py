@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="azapyGUI",
-    version="0.0.1",
+    version="0.0.2",
     author="Mircea Marinescu",
     author_email="mircea.marinescu@outlook.com",
     description="GUI for azapy library - Financial Portfolio Optimization Algorithms",

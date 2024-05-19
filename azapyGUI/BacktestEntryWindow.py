@@ -150,11 +150,8 @@ class BacktestEntryWindow:
         
         self._btn_start = tk.Button(master=frm_btn, text='Start', width=12, command=self._btn_start_func)
         self._btn_start.pack(side=tk.RIGHT, padx=5, pady=5,)
-        
-        # self._frm_progress = tk.LabelFrame(master=self._window, text="Progress", font=("Forte", 10), height=200, width=300)
-        # self._frm_progress.pack(fill=tk.X, expand=False, padx=5, pady=5)
- 
-        
+
+
     def _destroy_all_windows(self):
         for widget in self._window.winfo_children():
             if isinstance(widget, tk.Toplevel):

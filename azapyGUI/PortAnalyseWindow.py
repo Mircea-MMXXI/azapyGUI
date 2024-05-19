@@ -56,6 +56,8 @@ class PortAnalyseWindow(TimeSeriesViewWindow):
         rep = pp.port_perf()
         cols = ['RR', 'DD', 'RoMaD']
         rep[cols] = (rep[cols] * 100).round(2)
+        rep.index = pd.Categorical(rep.index, categories=rep.index, ordered=True)
+        rep.index.name = 'Symbols'
         
         return rep, f'{pname} Summary', '400x200'
     
@@ -89,6 +91,7 @@ class PortAnalyseWindow(TimeSeriesViewWindow):
         rep = pp.port_quarterly_returns(withcomp=True)
         rep = (rep * 100).round(2)
         rep.rename(columns={'close': pname}, inplace=True)
+        rep.columns = pd.Categorical(rep.columns, categories=rep.columns, ordered=True)
         rep.columns.name = 'Symbols'
         
         rep.index = pd.MultiIndex.from_arrays(
@@ -106,6 +109,7 @@ class PortAnalyseWindow(TimeSeriesViewWindow):
         rep = pp.port_monthly_returns(withcomp=True)
         rep = (rep * 100).round(2)
         rep.rename(columns={'close': pname}, inplace=True)
+        rep.columns = pd.Categorical(rep.columns, categories=rep.columns, ordered=True)
         rep.columns.name = 'Symbols'
         
         rep.index = pd.MultiIndex.from_arrays(

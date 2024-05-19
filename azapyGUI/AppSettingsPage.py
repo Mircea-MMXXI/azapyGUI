@@ -36,7 +36,8 @@ class AppSettingsPage(tk.Frame):
         
         # on frm_set
         self._setDef = configSettings.settings_model[self._category]
-        self.settings = deepcopy(configSettings.MasterApplicationSettings)
+        #self.settings = deepcopy(configSettings.MasterApplicationSettings)
+        self.settings = {key: configSettings.MasterApplicationSettings[key] for key in self._setDef.keys()}
         row = 0
         self._chk_val = {}
         self._chk_btn = {}
@@ -156,7 +157,7 @@ class AppSettingsPage(tk.Frame):
                             if vpar is None:
                                 msg = (configMSG._validate_provider_key_msg
                                        +'\n' 
-                                       + configSettings.get_envkey_valriable_name(pp))
+                                       + configSettings.get_envkey_vriable_name(pp))
                                 tk.messagebox.showwarning(title="Warning", message=msg, parent=self._window)
                                 del self.settings[param][pp]
                                 self._chk_btn[param][pp].deselect()
@@ -189,10 +190,9 @@ class AppSettingsPage(tk.Frame):
         
         
     def _btn_save_func(self):
-        configSettings.MasterApplicationSettings = deepcopy(self.settings)
-        _saveMasterUserConfig(configSettings.MasterApplicationSettings)
-        #self._btn_cancel_func()
-        
+        configSettings.MasterApplicationSettings.update(self.settings)
+        _saveMasterUserConfig(configSettings.MasterApplicationSettings) 
+
         
     def _btn_reset_func(self):
         for kk, vv in self._setDef.items():
