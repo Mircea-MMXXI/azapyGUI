@@ -19,18 +19,19 @@ class GetMktData():
                 param[kk] = vv
                 
         file_dir = configSettings.MasterApplicationSettings["UserMktDataDirectory"]
+        fsave, fforce = (False, True) if file_dir is None else (True, force)
         
         self._symb_req_default = {"symbol": None,
                                   "sdate": None,
                                   "edate": None,
                                   "output_format": 'dict',
                                   "source": source,
-                                  "force": force,
-                                  "save": True,
+                                  "force": fforce,
+                                  "save": fsave,
                                   "file_dir": file_dir,
                                   "file_format": 'csv',
-                                  'api_key': api_key,
-                                  'param': param,
+                                  "api_key": api_key,
+                                  "param": param,
                                   }
         self._mktr = az.MkTreader(verbose=False)
         

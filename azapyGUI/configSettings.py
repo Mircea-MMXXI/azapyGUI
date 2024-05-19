@@ -127,12 +127,12 @@ def get_settings_default_all():
     return rout
     
 
-def get_envkey_valriable_name(provider):
+def get_envkey_vriable_name(provider):
     return settings_model["MkTData"]["Provider"]["values"][provider]["key"]["envkey"]
 
 
 def get_envkey(provider):
-    return os.getenv(get_envkey_valriable_name(provider))
+    return os.getenv(get_envkey_vriable_name(provider))
 
 
 MasterApplicationSettings = None

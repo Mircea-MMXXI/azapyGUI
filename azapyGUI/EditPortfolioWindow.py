@@ -147,13 +147,17 @@ class EditPortfolioWindow:
     def _tree_model_write(self):
         for name, selector in self.portfolio.selectors.items():
             item = self._tree_model.insert("", selector['index'], text=name, tags=("m_selector",))
+            invisible = configModels.param_default(name, visible=False)
             for kk, vv in selector['param'].items():
-                self._tree_model.insert(item, tk.END, text=kk +" =" + str(vv)) 
+                if kk in invisible: continue
+                self._tree_model.insert(item, tk.END, text=kk +" = "+ str(vv)) 
                 
         for name, optimizer in self.portfolio.optimizer.items():
             item = self._tree_model.insert("", tk.END, text=name, tags=("m_optimizer",)) 
+            invisible = configModels.param_default(name, visible=False)
             for kk, vv in optimizer['param'].items():
-                self._tree_model.insert(item, tk.END, text=kk + " = " + str(vv))
+                if kk in invisible: continue
+                self._tree_model.insert(item, tk.END, text=kk +" = "+ str(vv))
         
         
     def _set_tree_menu_selector(self):

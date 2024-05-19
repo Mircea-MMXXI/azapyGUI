@@ -26,7 +26,8 @@ class AppSettingsPageMisc(tk.Frame):
         
         # on frm
         self._setDef = configSettings.settings_model[self._category]
-        self.settings = deepcopy(configSettings.MasterApplicationSettings)
+        #self.settings = deepcopy(configSettings.MasterApplicationSettings)
+        self.settings = {key: configSettings.MasterApplicationSettings[key] for key in self._setDef.keys()}
         row = 0
         self._chk_val = {}
         self._chk_btn = {}
@@ -92,9 +93,8 @@ class AppSettingsPageMisc(tk.Frame):
         
         
     def _btn_save_func(self):
-        for param in self._chk_val.keys():
-            self.settings[param] = self._chk_val[param].get()
-        configSettings.MasterApplicationSettings = deepcopy(self.settings)
+        self.settings.update({key: self._chk_val[key].get() for key in self._chk_val.keys()})
+        configSettings.MasterApplicationSettings.update(self.settings)
         _saveMasterUserConfig(configSettings.MasterApplicationSettings)
         config.tiptil.turned(on=configSettings.MasterApplicationSettings["ShowTips"])
 

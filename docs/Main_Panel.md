@@ -29,7 +29,7 @@ It has the following items,
 * `New` - open a new portfolio `Edit` window. [Here](Portfolio_Edit_Panel.md) are more details.
 * `Open` - load an existing portfolio from a *json* file. Multiple selections are allowed.
 * `Edit` - open the `Edit` window for an active portfolio (already loaded). [Here](Portfolio_Edit_Panel.md) are more details.
-* `Backtest` - launch the backtesting procedure for a single active portfolio with status `Set`. [Here](Backtest_panel.md) are more details.
+* `Backtest` - launch the backtesting procedure for a single active portfolio with status `Set`. [Here](Backtest_Panel.md) are more details.
 * `Rebalance` - launch the rebalance procedure for an active portfolio with status `Set`. [Here](Rebalance_Panel.md) are more details.
 * `Save` - save an unsaved (`Saved `value is `False`) active portfolio.
 * `Save all` -  save successively all unsaved active portfolios.
