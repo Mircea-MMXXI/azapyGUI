@@ -37,7 +37,7 @@ class app:
         config.MktDataDict = {}
         config.PortDataDict = {}
         config.count_SymbTableEntry = -1
-        config.calendar = az.NYSEgen()
+        config.calendar = az.calendarGen(configSettings.MasterApplicationSettings["calendar"])
         config._bday = pd.offsets.CustomBusinessDay(calendar=config.calendar)
         img = base64.b64decode(config.iconimgdata)
         config.photo = tk.PhotoImage(data=img, master=self._root)

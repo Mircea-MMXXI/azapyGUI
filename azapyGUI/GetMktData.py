@@ -4,6 +4,7 @@ from copy import deepcopy
 import azapyGUI.config as config
 import azapyGUI.configSettings as configSettings
 from azapyGUI.MktDataNode import MktDataNode
+from azapyGUI.modelParametersValidation import _validStr
 
 
 class GetMktData():
@@ -53,6 +54,9 @@ class GetMktData():
         # retrieve symb (not in the system)
         self._symb_req["symbol"] = symb
         mktdata = self._mktr.get(calendar=config.calendar, **self._symb_req)
+        imputation_method = _validStr(configSettings.MasterApplicationSettings['imputation'])
+        if imputation_method is not None:
+            mktdata = self._mktr.set_imputation(method=imputation_method)
         if len(mktdata.keys()) == 0:
             # no extraction was possible (all symb are error symbols)
             self.symbols = list(set(symbols) - set(symb))

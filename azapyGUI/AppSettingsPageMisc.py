@@ -1,5 +1,8 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 from copy import deepcopy
+import pandas as pd
+import azapy as az
 
 import azapyGUI.config as config
 import azapyGUI.configSettings as configSettings
@@ -26,7 +29,6 @@ class AppSettingsPageMisc(tk.Frame):
         
         # on frm
         self._setDef = configSettings.settings_model[self._category]
-        #self.settings = deepcopy(configSettings.MasterApplicationSettings)
         self.settings = {key: configSettings.MasterApplicationSettings[key] for key in self._setDef.keys()}
         row = 0
         self._chk_val = {}
@@ -35,25 +37,35 @@ class AppSettingsPageMisc(tk.Frame):
             match value["type"]:
                 case 'Checkbutton':
                     lbl = tk.Label(master=frm_set, text=value["field"], anchor=tk.W)
-                    lbl.grid(row=row, column=0, padx=5, pady=5, sticky=tk.EW)
+                    lbl.grid(row=row, column=0, padx=5, pady=2, sticky=tk.EW)
                     chk_var = tk.BooleanVar(master=frm_set, value=self.settings[param])
                     chk_btn = tk.Checkbutton(master=frm_set, variable = chk_var, 
                                              onvalue = True, offvalue = False, 
-                                             height=2, width=18, anchor=tk.W)
-                    chk_btn.grid(row=row, column=1, padx=5, pady=5, sticky=tk.W)
+                                             height=1, width=10, anchor=tk.W)
+                    chk_btn.grid(row=row, column=1, padx=5, pady=2, sticky=tk.W)
                     self._chk_val[param] = chk_var
                     self._chk_btn[param] = chk_btn
                     config.tiptil.bind(chk_btn, value["tip"])
                     row += 1
                 case 'Entry':
                     lbl = tk.Label(master=frm_set, text=value["field"], anchor=tk.W)
-                    lbl.grid(row=row, column=0, padx=5, pady=5, sticky=tk.W)
+                    lbl.grid(row=row, column=0, padx=5, pady=2, sticky=tk.W)
                     ent_var = tk.StringVar(master=frm_set, value=self.settings[param])
                     ent = tk.Entry(master=frm_set, textvariable=ent_var, validate='key', width=10)
                     ent['validatecommand'] = (ent.register(value["validate"]),'%S','%d','%P')
-                    ent.grid(row=row, column=1, padx=5, pady=5, sticky=tk.W)
+                    ent.grid(row=row, column=1, padx=5, pady=2, sticky=tk.W)
                     self._chk_val[param] = ent_var
                     config.tiptil.bind(ent, value["tip"])
+                    row += 1
+                case 'Combobox':
+                    lbl = tk.Label(master=frm_set, text=value["field"], anchor=tk.W)
+                    lbl.grid(row=row, column=0, padx=5, pady=2, sticky=tk.EW)
+                    cbx_var = tk.StringVar(master=frm_set, value=self.settings[param])
+                    cbx = ttk.Combobox(master=frm_set, textvariable=cbx_var, width=10, state='readonly')
+                    cbx["values"] = value["values"]
+                    cbx.grid(row=row, column=1, padx=5, pady=2, sticky=tk.W)
+                    self._chk_val[param] = cbx_var
+                    config.tiptil.bind(cbx, value["tip"])
                     row += 1
                 case _:
                     # you should not be here
@@ -88,14 +100,21 @@ class AppSettingsPageMisc(tk.Frame):
                         self._chk_btn[kk].select()
                     else:
                         self._chk_btn[kk].deselect()
-                case "Entry":
+                #case "Entry":
+                case _:
                     self._chk_val[kk].set(self.settings[kk])
         
         
     def _btn_save_func(self):
+        if self.settings['calendar'] != self._chk_val['calendar'].get():
+            config.MktDataDict.clear()
+            config.appMktDataFrame.refresh()
+
         self.settings.update({key: self._chk_val[key].get() for key in self._chk_val.keys()})
         configSettings.MasterApplicationSettings.update(self.settings)
         _saveMasterUserConfig(configSettings.MasterApplicationSettings)
         config.tiptil.turned(on=configSettings.MasterApplicationSettings["ShowTips"])
+        config.calendar = az.calendarGen(configSettings.MasterApplicationSettings["calendar"])
+        config._bday = pd.offsets.CustomBusinessDay(calendar=config.calendar)
 
                     

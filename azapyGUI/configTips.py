@@ -238,3 +238,9 @@ _sew_provider_tip = \
 
 _sew_force_tip = \
 "Check to force market data reding from provider (slower)."
+
+_exchange_calendar_tip = \
+"Exchange business calendar."
+
+_imputation_method_tip = \
+"Method to imputing missing data."
