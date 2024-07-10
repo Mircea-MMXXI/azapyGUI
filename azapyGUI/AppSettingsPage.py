@@ -36,7 +36,6 @@ class AppSettingsPage(tk.Frame):
         
         # on frm_set
         self._setDef = configSettings.settings_model[self._category]
-        #self.settings = deepcopy(configSettings.MasterApplicationSettings)
         self.settings = {key: configSettings.MasterApplicationSettings[key] for key in self._setDef.keys()}
         row = 0
         self._chk_val = {}

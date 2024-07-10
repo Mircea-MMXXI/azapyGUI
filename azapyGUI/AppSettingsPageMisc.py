@@ -41,7 +41,7 @@ class AppSettingsPageMisc(tk.Frame):
                     chk_var = tk.BooleanVar(master=frm_set, value=self.settings[param])
                     chk_btn = tk.Checkbutton(master=frm_set, variable = chk_var, 
                                              onvalue = True, offvalue = False, 
-                                             height=1, width=10, anchor=tk.W)
+                                             height=1, width=1, anchor=tk.W)
                     chk_btn.grid(row=row, column=1, padx=5, pady=2, sticky=tk.W)
                     self._chk_val[param] = chk_var
                     self._chk_btn[param] = chk_btn
