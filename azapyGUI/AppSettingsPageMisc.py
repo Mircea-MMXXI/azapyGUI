@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+import platform
 from copy import deepcopy
 import pandas as pd
 import azapy as az
@@ -46,6 +47,9 @@ class AppSettingsPageMisc(tk.Frame):
                     self._chk_val[param] = chk_var
                     self._chk_btn[param] = chk_btn
                     config.tiptil.bind(chk_btn, value["tip"])
+                    if (param == 'OpenExcel') and (platform.system() == 'Linux'):
+                        chk_var.set(False)
+                        chk_btn.config(state=tk.DISABLED)
                     row += 1
                 case 'Entry':
                     lbl = tk.Label(master=frm_set, text=value["field"], anchor=tk.W)

@@ -48,8 +48,11 @@ Then press `Save` and close the window.
 
 These are persistent setups, preserved between `azapyGUI` sessions.
 
+By default, `azapyGUI` is set for NYSE products. If you are interested in working with equity products from non-US exchanges
+please see [here](./non_US_settings.md) additional information.
 
-We will come back later to the topic of user settings with more details about the available options. 
+
+We will come back later to the topic of [application settings](./Settings_Panel.md) with more details about the available options. 
 For now, this is all what we need to start the very first `azapyGUI` session.
 
 ## Build First Portfolio ##

@@ -45,6 +45,7 @@ Table of Content
    Backtest_Panel
    Statistics_Panel
    Rebalance_Panel
+   non_US_settings
    Calendars
 
 

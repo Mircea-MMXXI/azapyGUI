@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="azapyGUI",
-    version="0.1.0",
+    version="0.1.1",
     author="Mircea Marinescu",
     author_email="mircea.marinescu@outlook.com",
     description="GUI for azapy library - Financial Portfolio Optimization Algorithms",
@@ -31,6 +31,6 @@ setuptools.setup(
           'numpy',
           'pandas',
           'matplotlib',
-          'xlsxwriter'
+          'xlsxwriter; platform_system=="Windows"'
     ],
 )
