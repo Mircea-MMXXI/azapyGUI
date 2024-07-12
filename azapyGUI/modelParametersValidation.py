@@ -440,3 +440,8 @@ def _validDateMMDDYYYY(inp, acttype, val):
    
 def _list2string(lnames, bk=10):
     return '\n'.join([', '.join(lnames[k : (k + bk)]) for k in range(0, len(lnames), bk)])
+
+
+def _validStr(name):
+    rout = str(name)
+    return rout if rout.upper() not in ('NULL', 'NAN', 'NA', 'NONE') else None

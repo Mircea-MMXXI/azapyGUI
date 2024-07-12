@@ -2,7 +2,15 @@ import os
 import azapyGUI.configTips as configTips
 from azapyGUI.modelParametersValidation import _validDateMMDDYYYY, _validInt, _validIntNegative, _validIntPositive
 
-Version = '0.0.1'
+Version = '0.1.0'
+
+_exchange_calendar_values = ('NYSE', 'XBUE', 'XASX', 'XWBO', 'XBRU', 'BVMF', 'XTSE', 'XSGO', 'XSHG', 'XBOG', 
+                             'XPRA', 'XCSE', 'XLON', 'XHEL', 'XPAR', 'XFRA', 'ASEX', 'XHKG', 'XBUD', 'XICE', 
+                             'XBOM', 'XIDX', 'XDUB', 'XMIL', 'XTKS', 'XKLS', 'XMEX', 'XAMS', 'XNZE', 'XOSL', 
+                             'XKAR', 'XLIM', 'XPHS', 'XWAR', 'XLIS', 'XMOS', 'XSES', 'XJSE', 'XKRX', 'XMAD', 
+                             'XSTO', 'XSWX', 'XTAI', 'XBKK', 'XIST', 'XNYS')
+
+_imputation_method_values = ('None', 'linear')
 
 settings_model = {"Directors": {"UserPortfolioDirectory": {"default": None,
                                                            "type": 'ButtonDir',
@@ -93,6 +101,18 @@ settings_model = {"Directors": {"UserPortfolioDirectory": {"default": None,
                                                 "tip": configTips._settings_capital_default_tip,
                                                 "validate": _validIntPositive,
                                                 },
+                                    "calendar": {"default": 'NYSE',
+                                                 "type": 'Combobox',
+                                                 "field": 'Exchange calendar',
+                                                 "tip": configTips._exchange_calendar_tip,
+                                                 "values": _exchange_calendar_values,
+                                                },
+                                    "imputation": {"default": 'linear',
+                                                   "type": 'Combobox',
+                                                   "field": 'Imputation method',
+                                                   "tip": configTips._imputation_method_tip,
+                                                   "values": _imputation_method_values,
+                                                   },
                                     "nsh_round": {"default": True,
                                                   "type": 'Checkbutton',
                                                   "field": 'Int. nr. shares',
@@ -113,7 +133,6 @@ settings_model = {"Directors": {"UserPortfolioDirectory": {"default": None,
                   }
 
  
-
 def get_settings_default(category):
     rout = {kk:  vv["default"] for kk, vv in settings_model[category].items()}
     return rout

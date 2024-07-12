@@ -100,6 +100,11 @@ the last few seconds before the market closes. For most of the retail users it i
 the fixing date is the closing day before the rebalancing date and the portfolio weights are computed relative to this closing (*e.g.*, if
 the rebalancing day is a Monday then the fixing date is the previous exchange business day; it could be a Friday).
 * `Capital` - default cash value of the capital. Our suggestion is $100,000.
+* `Exchange calendar` - exchange business calendar (ISO) name, [see the list of valid calendars names](./Calendars.md). It is the user responsibility to set 
+the exchange calendar relevant to the underlying portfolio symbols. The prevalent currency is the exchange currency (designated by the calendar). 
+You may adjust accordingly the `Capital` default value. For example the currency for London exchange is penny not pounds.
+If the calendar is changed during a session (an unusual operation), then all the loaded market data is removed. 
+* `Imputation method` - specifies how to replace the missing data. Possible values, `None` - no imputation, and `linear` - liner interpolation.
 * `Int nr. shares` - logical flag. If checked the number of shares (for rebalancing) are rounded to integer numbers. Most of the brokers 
 requires orders of integer number of shares. There are a few brokers that allowed for fractional number of shares. Before using them
 check the fee’s structure. It may be against you. Choosing an integer number of shares may introduce rebalancing roundup errors.

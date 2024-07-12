@@ -76,7 +76,7 @@ and then run in a powershell: `python my_azapy.py`
 
   1. Kelly's portfolio (as in John Larry Kelly Jr. scientist 1923-1965) -
      maximization of portfolio log returns
-  2. Universal portfolio (Thomas M. Cover 1996) <span style="color:red">(alpha version)</span>
+  2. Universal portfolio (Thomas M. Cover 1996) <span style="color:blue">(beta version)</span>
 
 ### D. Market Selectors
 
@@ -95,9 +95,9 @@ and then run in a powershell: `python my_azapy.py`
 ### Required packages  
 
 * python 3.11.8
-* azapy 1.2.4
+* azapy 1.2.5
 * pandas 2.2.0
 * numpy 1.26.0
 * matplotlib 3.8.0
-* xlsxwriter 3.1.1
+* xlsxwriter 3.1.1 (for non-Linux installations)
 
