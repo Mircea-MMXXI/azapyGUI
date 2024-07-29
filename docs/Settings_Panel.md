@@ -1,4 +1,4 @@
-# Settings panel #
+# Settings window #
 
 Note that the version of the configuration settings is listed in the title of the window. 
 In our case, it is v 0.0.1. To not be confused with `azapyGUI` release version (that can be found in `Help`/`About`).
@@ -14,7 +14,7 @@ The `Settings` window has 3 pages:
 
 Let's discuss them one by one.
 
-## __Directories__ page ## 
+## Directories ## 
 
 There are 3 directories that must be set
 
@@ -44,7 +44,7 @@ saved for further inspection.
 At the time of saving to file, you will be prompted by default to this directory.
 You can always change the final location.
 
-## __Market Data__ page ##
+## Market Data ##
 
 Here you can set the market data providers.
 
@@ -79,7 +79,7 @@ some providers (check the user agreement with them) may restrict (or charge addi
 
 We strongly recommend leaving unchecked this flag (as a default value).
 
-## Miscellaneous page ##
+## Miscellaneous ##
 
 This is a collection of default values for certain common entry fields in various application windows.
 

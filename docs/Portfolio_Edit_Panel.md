@@ -1,4 +1,4 @@
-# Portfolio Edit panel #
+# Portfolio Edit window #
 
 `Portfolio Edit` window facilitates the editing of new/existing portfolios. It may look like this:
 

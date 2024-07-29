@@ -1,3 +1,3 @@
-# Statistics panel #
+# Statistics window #
 
 *Coming soon*

@@ -22,7 +22,7 @@ copyright = '2024, Mircea Marinescu'
 author = 'Mircea Marinescu'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.4'
+release = '0.0.5'
 
 
 # -- General configuration ---------------------------------------------------
@@ -78,7 +78,7 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
-# myst_heading_anchors = 6
+myst_heading_anchors = 6
 
 autodoc_inherit_docstrings = False
 autodoc_default_options = {

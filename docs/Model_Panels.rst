@@ -1,5 +1,5 @@
-Model panels
-############
+Model windows
+#############
 
 Selectors 
 *********
