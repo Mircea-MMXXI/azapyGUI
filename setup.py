@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as readme:
 
 setuptools.setup(
     name="azapyGUI",
-    version="0.1.1",
+    version="1.0.0",
     author="Mircea Marinescu",
     author_email="mircea.marinescu@outlook.com",
     description="GUI for azapy library - Financial Portfolio Optimization Algorithms",
@@ -25,9 +25,9 @@ setuptools.setup(
     ],
     package_dir={"": "."},
     packages=setuptools.find_packages(),
-    python_requires=">=3.11",
+    python_requires=">=3.14.4",
     install_requires=[
-          'azapy>=1.2.5',
+          'azapy>=1.2.6',
           'numpy',
           'pandas',
           'matplotlib',

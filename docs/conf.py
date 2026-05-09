@@ -18,11 +18,11 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'azapyGUI'
-copyright = '2024, Mircea Marinescu'
+copyright = '2026, Mircea Marinescu'
 author = 'Mircea Marinescu'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.5'
+release = '1.0.0'
 
 
 # -- General configuration ---------------------------------------------------
