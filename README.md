@@ -94,10 +94,10 @@ and then run in a powershell: `python my_azapy.py`
 
 ### Required packages  
 
-* python 3.11.8
-* azapy 1.2.5
-* pandas 2.2.0
-* numpy 1.26.0
-* matplotlib 3.8.0
-* xlsxwriter 3.1.1 (for non-Linux installations)
+* python 3.14.4
+* azapy 1.2.6
+* pandas 3.0.2
+* numpy 2.4.4
+* matplotlib 3.10.8
+* xlsxwriter 3.2.9 (for non-Linux installations)
 
