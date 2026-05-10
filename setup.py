@@ -25,7 +25,7 @@ setuptools.setup(
     ],
     package_dir={"": "."},
     packages=setuptools.find_packages(),
-    python_requires=">=3.14.4",
+    python_requires=">=3.14",
     install_requires=[
           'azapy>=1.2.6',
           'numpy',
